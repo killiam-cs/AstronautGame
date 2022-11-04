@@ -38,11 +38,17 @@ public class BasicGameApp implements Runnable {
 	public JPanel panel;
 
 	public BufferStrategy bufferStrategy;
+
+
 	public Image astroPic;
+	public Image alienPic;
 
 	//Declare the objects used in the program
 	//These are things that are made up of more than one variable type
-	private Astronaut astro;
+	public Astronaut astro;
+	public Astronaut alien;
+
+
 
 	// Main method definition
 	// This is the code that runs first and automatically
@@ -63,6 +69,9 @@ public class BasicGameApp implements Runnable {
 		astroPic = Toolkit.getDefaultToolkit().getImage("astronaut.png"); //load the picture
 		astro = new Astronaut("astro",10,100); //construct the astronaut
 
+		alienPic = Toolkit.getDefaultToolkit().getImage("alien.png");
+		alien = new Astronaut("alien", 800, 400);
+
 	} // end BasicGameApp constructor
 
 
@@ -74,7 +83,6 @@ public class BasicGameApp implements Runnable {
 	// main thread
 	// this is the code that plays the game after you set things up
 	public void run() {
-
 		//for the moment we will loop things forever.
 		while (true) {
 			moveThings();  //move all the game objects
@@ -86,7 +94,7 @@ public class BasicGameApp implements Runnable {
 	public void moveThings() {
 		//calls the move( ) code in the objects
 		astro.move();
-
+		alien.bounce();
 	}
 
 	//Pauses or sleeps the computer for the amount specified in milliseconds
@@ -133,6 +141,8 @@ public class BasicGameApp implements Runnable {
 
 		//draw the image of the astronaut
 		g.drawImage(astroPic, astro.xpos, astro.ypos, astro.width, astro.height, null);
+
+		g.drawImage(alienPic, alien.xpos, alien.ypos, alien.width, alien.height, null);
 
 		g.dispose();
 		bufferStrategy.show();

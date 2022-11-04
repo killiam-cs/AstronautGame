@@ -24,7 +24,7 @@ public class Astronaut {
         xpos = pXpos;
         ypos = pYpos;
         dx = 1;
-        dy = 0;
+        dy = 1;
         width = 60;
         height = 60;
         isAlive = true;
@@ -35,8 +35,21 @@ public class Astronaut {
     public void move() { // move
         xpos = xpos + dx;
         ypos = ypos + dy;
- 
     } // end move
+
+    public void bounce() {
+        xpos = xpos + dx;
+        ypos = ypos + dy;
+
+        // if alien hits the right side, reverse dx direction
+        if (xpos == 1000-width) {
+            dx = -dx;
+        }
+    }
+
+    public void wrap() {
+
+    }
 }
 
 
